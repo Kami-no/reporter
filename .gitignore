@@ -1,0 +1,6 @@
+.*
+!.dockerignore
+!.gitignore
+!.gitlab-ci.yml
+config.yaml
+reporter

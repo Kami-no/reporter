@@ -1,0 +1,9 @@
+{{ range $pid, $project := . }}
+<b>{{ $project.Name }}</b><br />
+<ul>{{ range $aid, $assignee := $project.Assignees }}
+<li><b>{{ $aid }}</b>
+<ul>{{ range $assignee.Issues }}
+<li>{{ .State }} - {{ .Title }}</li>{{ end }}
+</ul>
+</li>{{ end }}
+</ul>{{ end }}
