@@ -31,6 +31,8 @@ type Issue struct {
 	Title    string
 	State    string
 	Assignee string
+	URL      string
+	ID       int
 }
 
 func (g *gitlabSvc) GetProjectClosedIssues(pid int) ([]Issue, error) {
@@ -91,12 +93,14 @@ func (g *gitlabSvc) getProjectIssues(pid int, issueOpts *gitlab.ListProjectIssue
 
 		for _, issue := range issues {
 			if issue.Assignee != nil {
-				issue := Issue{
+				i := Issue{
 					Title:    issue.Title,
 					Assignee: issue.Assignee.Name,
 					State:    issue.State,
+					URL:      issue.WebURL,
+					ID:       issue.IID,
 				}
-				output = append(output, issue)
+				output = append(output, i)
 			}
 		}
 

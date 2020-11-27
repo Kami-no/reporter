@@ -7,7 +7,7 @@ Projects:
 <ul>{{ range $aid, $assignee := $project.Assignees }}
 <li><b>{{ $aid }}</b>
 <ul>{{ range $assignee.Issues }}
-<li>{{ .State }} - {{ .Title }}</li>{{ end }}
+<li><code><a href="{{ .URL }}">{{ .ID }}</a> {{ .State }}</code> - {{ .Title }}</li>{{ end }}
 </ul>
 </li>{{ end }}
 </ul>
