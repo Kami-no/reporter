@@ -2,8 +2,8 @@ package main
 
 import (
 	"bytes"
+	"html/template"
 	"log"
-	"text/template"
 
 	"github.com/Kami-no/reporter/config"
 	"github.com/Kami-no/reporter/controller"

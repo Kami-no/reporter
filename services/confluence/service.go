@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/Kami-no/reporter/config"
@@ -110,7 +111,13 @@ func (c *confluenceSvc) Update(body string) error {
 	}
 
 	if resp.StatusCode != 200 {
-		return fmt.Errorf("failed to post: %v", resp.StatusCode)
+		bodyBytes, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+		body := string(bodyBytes)
+
+		return fmt.Errorf("failed to post: %v %v", resp.StatusCode, body)
 	}
 
 	return nil
