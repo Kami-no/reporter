@@ -1,0 +1,14 @@
+---
+GitLab:
+  Endpoint: ad.example.com
+  User: username
+  Pass: password
+
+Confluence:
+  Endpoint: ad.example.com
+  User: username
+  Pass: password
+  Page: 12345678
+
+Projects:
+  112: "DevOps"
