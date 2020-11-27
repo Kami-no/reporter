@@ -24,6 +24,8 @@ func New(config *config.Config) *Controller {
 
 type Assignee struct {
 	Issues []gitlabsvc.Issue
+	WIP    int
+	Closed int
 }
 
 func (c *Controller) GetProjectAssignees(pid int) (map[string]Assignee, error) {
@@ -37,6 +39,11 @@ func (c *Controller) GetProjectAssignees(pid int) (map[string]Assignee, error) {
 	for _, issue := range issues {
 		assignee := output[issue.Assignee]
 		assignee.Issues = append(assignee.Issues, issue)
+		if issue.State == "opened" {
+			assignee.WIP++
+		} else {
+			assignee.Closed++
+		}
 		output[issue.Assignee] = assignee
 	}
 

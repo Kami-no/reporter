@@ -6,4 +6,11 @@
 <li>{{ .State }} - {{ .Title }}</li>{{ end }}
 </ul>
 </li>{{ end }}
-</ul>{{ end }}
+</ul>
+<center>
+<b>{{ $project.Name }} Scoreboard</b>
+<table>
+<tr><th></th><th>Work in Progress</th><th>Closed</th></tr>{{ range $aid, $assignee := $project.Assignees }}
+<tr><td>{{ $aid }}</td><td>{{ $assignee.WIP }}</td><td>{{ $assignee.Closed }}</td></tr>{{ end }}
+</table>
+</center>{{ end }}
