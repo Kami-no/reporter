@@ -1,5 +1,9 @@
+Projects:
+<ul>{{ range $pid, $project := . }}
+<li><a href="#Weeklyreport-{{ $project.Name }}">{{ $project.Name }}</a></li>{{ end }}
+</ul>
 {{ range $pid, $project := . }}
-<b>{{ $project.Name }}</b><br />
+<h1 id="{{ $project.Name }}">{{ $project.Name }}</h1><br />
 <ul>{{ range $aid, $assignee := $project.Assignees }}
 <li><b>{{ $aid }}</b>
 <ul>{{ range $assignee.Issues }}
