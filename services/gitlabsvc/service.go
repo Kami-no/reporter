@@ -1,6 +1,7 @@
 package gitlabsvc
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/xanzy/go-gitlab"
@@ -32,7 +33,7 @@ type Issue struct {
 	State    string
 	Assignee string
 	URL      string
-	ID       int
+	ID       string
 }
 
 func (g *gitlabSvc) GetProjectClosedIssues(pid int) ([]Issue, error) {
@@ -98,7 +99,7 @@ func (g *gitlabSvc) getProjectIssues(pid int, issueOpts *gitlab.ListProjectIssue
 					Assignee: issue.Assignee.Name,
 					State:    issue.State,
 					URL:      issue.WebURL,
-					ID:       issue.IID,
+					ID:       fmt.Sprintf("%04d", issue.IID),
 				}
 				output = append(output, i)
 			}
