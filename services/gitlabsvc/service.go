@@ -10,8 +10,7 @@ import (
 )
 
 type Service interface {
-	GetProjectClosedIssues(project int) ([]Issue, error)
-	GetProjectAssignedIssues(project int) ([]Issue, error)
+	GetProjectUpdatedIssues(project int) ([]Issue, error)
 	getProjectIssues(pid int, issueOpts *gitlab.ListProjectIssuesOptions) ([]Issue, error)
 }
 
@@ -36,29 +35,11 @@ type Issue struct {
 	ID       string
 }
 
-func (g *gitlabSvc) GetProjectClosedIssues(pid int) ([]Issue, error) {
+func (g *gitlabSvc) GetProjectUpdatedIssues(pid int) ([]Issue, error) {
 	// Setup filter
 	issueOpts := &gitlab.ListProjectIssuesOptions{
 		OrderBy:      gitlab.String("updated_at"),
 		UpdatedAfter: gitlab.Time(time.Now().AddDate(0, 0, -7)),
-		ListOptions: gitlab.ListOptions{
-			PerPage: 100,
-			Page:    1,
-		},
-	}
-
-	out, err := g.getProjectIssues(pid, issueOpts)
-	if err != nil {
-		return nil, err
-	}
-
-	return out, nil
-}
-
-func (g *gitlabSvc) GetProjectAssignedIssues(pid int) ([]Issue, error) {
-	// Setup filter
-	issueOpts := &gitlab.ListProjectIssuesOptions{
-		OrderBy: gitlab.String("updated_at"),
 		ListOptions: gitlab.ListOptions{
 			PerPage: 100,
 			Page:    1,

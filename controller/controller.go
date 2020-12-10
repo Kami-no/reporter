@@ -31,7 +31,7 @@ type Assignee struct {
 func (c *Controller) GetProjectAssignees(pid int) (map[string]Assignee, error) {
 	output := make(map[string]Assignee)
 
-	issues, err := c.Git.GetProjectClosedIssues(pid)
+	issues, err := c.Git.GetProjectUpdatedIssues(pid)
 	if err != nil {
 		return nil, err
 	}
