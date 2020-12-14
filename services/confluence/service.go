@@ -262,14 +262,12 @@ func (c *confluenceSvc) postUpdate(pid int, body string) error {
 }
 
 func (c *confluenceSvc) Publish(body string) error {
-	title := time.Now().Format("2006-01-02")
+	title := fmt.Sprintf("%v%v", c.cfg.Prefix, time.Now().Format("2006-01-02"))
 
 	pid, err := c.searchPage(title)
 	if err != nil {
 		return err
 	}
-
-	fmt.Print(pid)
 
 	if pid == 0 {
 		if err := c.postNew(title, body); err != nil {

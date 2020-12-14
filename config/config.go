@@ -22,6 +22,7 @@ type CfgService struct {
 	Pass     string `yaml:"Pass"`
 	Space    string `yaml:"Space"`
 	Page     int    `yaml:"Page"`
+	Prefix   string `yaml:"Prefix"`
 }
 
 // Generate config
