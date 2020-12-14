@@ -20,6 +20,7 @@ type CfgService struct {
 	Endpoint string `yaml:"Endpoint"`
 	User     string `yaml:"User"`
 	Pass     string `yaml:"Pass"`
+	Space    string `yaml:"Space"`
 	Page     int    `yaml:"Page"`
 }
 

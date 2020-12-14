@@ -9,6 +9,7 @@ Confluence:
   User: username
   Pass: password
   Page: 12345678
+  Space: DevOps
 
 Projects:
   112: "DevOps"

@@ -42,7 +42,7 @@ func main() {
 	report := t.String()
 
 	// Post report
-	if err := ctrl.Wiki.Update(report); err != nil {
+	if err := ctrl.Wiki.Publish(report); err != nil {
 		log.Fatal(err)
 	}
 
